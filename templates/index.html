@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rossman  Sales</title>
+    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+    <style>
+      body{
+    text-align:center;
+    background-image: linear-gradient(-90deg, rgb(42, 42, 121), rgb(114, 34, 34));
+  }
+
+  h1{
+    color:white;
+  }
+  
+  #form{
+    display: grid;
+    grid-row-gap: 20px;
+    width:26%;
+    justify-content:center;
+    padding: 2%;
+    background-color: white;
+    position:relative;
+    left:35%;
+   }
+   input:hover{
+     border: 2px solid blue;
+     border-radius: 8%;
+   }
+  
+  button{
+    margin:0 37% 0 37%; 
+    width: 26%;
+    background-color: rgb(25, 175, 235);
+    border:2px solid rgb(25, 175, 235);
+    color:white;
+    font-weight: 900;
+    border-radius: 8%;
+  }
+  
+  @media(max-width:756px){
+    #form{
+    width:60%;
+    position:relative;
+    left:85%;
+    }
+  }
+  
+  @media(max-width:362px){
+    #form{
+    width:80%;
+    position:relative;
+    left:5%;
+    }
+  }
+  
+    </style>
+</head>
+<body>
+    <h1 id="title">Rossman Store Sales Prediction</h1>
+    <p id="description"></p>
+    <form id="form"  action="{{ url_for('predict') }}" method="POST" style="margin-bottom: 20px;">
+        <div>
+        <p>Contact Me</p>
+        <a target="_blank" href="https://github.com/akashAD98"><i class="fab fa-github fa-3x contact-icon" style="size: 20px;"></i></a>
+        <a target="_blank" href="https://www.linkedin.com/in/akash-desai-1b482b196"><i class="fab fa-linkedin fa-3x contact-icon"></i></a>
+         </div>
+
+        <div class="form-group">
+            <p><small>Please input store Id between 1 - 1115</small></p>
+        <label for="exampleFormControlInput1">Store</label>
+        <input type="form-input" type="text" name="store" class="form-control" id="exampleFormControlInput1" placeholder="store ID (1-1115)" required="required">
+        </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">DayofWeek</label>
+        <input type="form-input" type="text" name="dayofWeek" class="form-control" id="exampleFormControlInput1" placeholder="(1 to 7)" required="required">
+    </div>
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Promo</label>
+            <input type="form-input" type="text" name="promo" class="form-control" id="exampleFormControlInput1" placeholder="Promo (0 or 1)" required="required">
+          <p><small> store running a Promo = 0/1</small></p>
+        </div>
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">StateHoliday</label>
+        <input type="form-input" type="text" name="stateHoliday" class="form-control" id="exampleFormControlInput1" placeholder="StateHoliday ( 0 or 1)" required="required">
+       </div>
+        <p><small>0 = Not holiday <br> 1 = State holiday</small></p>
+
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">SchoolHoliday</label>
+        <input type="form-input" type="text" name="schoolHoliday" class="form-control" id="exampleFormControlInput1" placeholder="SchoolHoliday ( 0 or 1 )" required="required">
+        <p><small>0 = Not holiday <br> 1 = school holiday</small></p>
+        </div>
+
+
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">CompetitionDistance</label>
+        <input type="form-input" type="text" name="competitionDistance" class="form-control" id="exampleFormControlInput1" placeholder="CompetitionDistance" required="required">
+        </div>
+
+
+
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Promo2</label>
+        <input type="form-input" type="text" name="promo2" class="form-control" id="exampleFormControlInput1" placeholder="Promo2 ( o or 1)" required="required">
+        </div>
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Month</label>
+        <input type="form-input" type="text" name="month" class="form-control" id="exampleFormControlInput1" placeholder="Month (1-12) " required="required">
+        </div>
+
+
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Year</label>
+        <input type="form-input" type="text" name="year" class="form-control" id="exampleFormControlInput1" placeholder="Year (2013-2015)" required="required">
+        </div>
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Day</label>
+        <input type="form-input" type="text" name="day" class="form-control" id="exampleFormControlInput1" placeholder="day (1-31) " required="required">
+        </div>
+
+
+
+
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Assortment </label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="assortment">
+            <option>is_Assortment_a</option>
+            <option>is_Assortment_b</option>
+            <option>is_Assortment_c</option>
+        </select>
+        <p><small>a = basic | b = extra | c = extended</small></p>
+    </div>
+
+
+         <div class="form-group">
+        <label for="exampleFormControlSelect1">StoreType</label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="storeType">
+            <option>is_StoreType_a</option>
+            <option>is_StoreType_b</option>
+            <option>is_StoreType_c</option>
+             <option>is_StoreType_d</option>
+        </select>
+    </div>
+
+
+
+    <!-- <center><input type="submit" class="btn btn-success p-2" value="Predict"></center>
+          <center><input type="submit" class="btn btn-success p-2" value="Predict"></center> -->
+     <button type="submit" class="btn btn-success p-2" value="Predict">Predict</button>
+    </form>
+    <h5>
+          Copyright  &copy; 2021 |
+          <a class="text-white" href="#about"
+            >Akash Desai</a
+          >
+        </h5>
+    </body>
+</html>
